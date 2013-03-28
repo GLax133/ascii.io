@@ -1,0 +1,13 @@
+SetEnv RAILS_RELATIVE_URL_ROOT /ascii.io
+
+RewriteEngine On
+
+#RewriteRule ^(stylesheets/.*)$ - [L]
+#RewriteRule ^(javascripts/.*)$ - [L]
+#RewriteRule ^(images/.*)$ - [L]
+
+#RewriteRule ^$ index.html [QSA]
+#RewriteRule ^([^.]+)$ $1.html [QSA]
+#RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ asciiio_cgi.fcgi [E=X-HTTP_AUTHORIZATION:%{HTTP:Authorization},QSA,L]
