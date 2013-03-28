@@ -1,0 +1,39 @@
+<section id="presentation" class="feature">
+  <div class="asciicast-wrapper">
+    <%= player @asciicast %>
+  </div>
+</section>
+
+<section>
+  <div >
+ <ul >
+    <% @pictures.each do |pic| %>
+     <li style="display:inline" >
+      <a href=<%= pic.picture_file %> target="view_frame">
+     <%=image_tag(pic.picture_file_url(:thumb)) %> </a> 
+     </li>
+    <% end %>
+  </ul>	
+  </div>
+</section>
+
+<section class="supplimental">
+  <div class="wrapper">
+    <div class="main">
+      <h1><%= @asciicast.title %></h1>
+
+      <div class="description">
+        <%= @asciicast.description %>
+      </div>
+
+      <%= render :partial => 'other_by_user' %>
+    </div>
+
+    <div class="extras">
+      <%= render :partial => 'author' %>
+      <%= render :partial => 'actions' %>
+      <%= render :partial => 'info' %>
+      <%# <%= render :partial => 'share' %1> %>
+    </div>
+  </div>
+</section>
