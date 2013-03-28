@@ -1,8 +1,0 @@
-#!/bin/sh
-
-set -e
-
-rm -f log/*
-bundle install
-bundle exec rake db:setup --trace
-touch tmp/restart.txt
