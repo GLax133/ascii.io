@@ -1,6 +1,7 @@
+#coding=utf-8
 class HomeController < ApplicationController
   def show
-    @title = "Share Your Terminal With No Fuss"
+    @title = "共享你的代码---编程公园"
 
     if home_asciicast_id = CFG['HOME_CAST_ID']
       asciicast = Asciicast.find(home_asciicast_id)

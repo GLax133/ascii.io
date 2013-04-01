@@ -7,7 +7,7 @@ defaults: &defaults
   AWS_SECRET_ACCESS_KEY: 
   AWS_REGION: 
   AWS_BUCKET: 
-  HOME_CAST_ID: 
+  HOME_CAST_ID: 1 
   COLOR_CHECK_CAST_ID: 
 
 development:
