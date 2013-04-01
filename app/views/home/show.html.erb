@@ -3,15 +3,15 @@
     <div class="primary_info">
       <h1>
         <em>爱编程就像爱生命</em>
-        <h2>乐趣，来自 “我们的编程公园”</h2>
+        <h2>&nbsp;&nbsp;&nbsp;乐趣，来自 “我们的编程公园”</h2>
       </h1>
-
-      </p>记录你的代码，并分享给他人 ·</p> 留下你的声音，让世界听得见·</p> 找到你的知己，一起学习成长·</p>
+      </p>在这里，你可以
+      </p> ·记录你的代码，并分享给他人 </p>· 留下你的声音，让世界听得见</p>· 找到你的知己，一起学习成长
       
 
-      <h2>
+      <p>
         <%= link_to '&raquo; 帮助别人，快乐自己，从这里开始'.html_safe, docs_path(:record) %>
-      </h2>
+      </p>
     </div>
 
     <div class="secondary_info" style="height:400px">
@@ -23,7 +23,7 @@
 <section class="supplimental">
   <div class="wrapper">
     <div class="main">
-      <h1>Recent Asciicasts</h1>
+      <h1>最新录制</h1>
       <%= render :partial => 'asciicasts/previews',
                  :locals => { :asciicasts => @asciicasts } %>
     </div>
