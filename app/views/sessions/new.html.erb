@@ -1,16 +1,30 @@
 <section class="supplimental">
   <div class="wrapper">
-    <h1>Log In</h1>
+    <a href="/users/new">点击注册</a>
+    <%= form_for @user, :url => '/login', :html => { :class => 'form-horizontal' } do |f| %>
+      <fieldset>
 
-    <p>
-      Log in with your GitHub or Twitter account:
-    </p>
+        <div class="control-group">
+          <%= f.label :email,'邮箱', :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :email, :class => 'text_field' %>
+          </div>
+        </div>
 
-    <ul id="login">
-      <li><%= link_to "Log in via Github", github_auth_path, :class => 'btn-auth btn-github' %></li>
-      <li><%= link_to "Log in via Twitter", twitter_auth_path, :class => 'btn-auth btn-twitter' %></li>
-    </ul>
-  </div>
 
-  <div class="vertical-expander"></div>
+        <div class="control-group">
+          <%= f.label :password,'密码', :class => 'control-label' %>
+          <div class="controls">
+            <%= f.password_field :password, :class => 'text_field' %>
+          </div>
+        </div>
+
+
+        <div class="form-actions">
+          <%= f.submit '登陆', :class => 'btn btn-primary' %>
+        </div>
+      </fieldset>
+    <% end %>
+ 
+
 </section>

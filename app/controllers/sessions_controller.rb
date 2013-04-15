@@ -1,15 +1,14 @@
 class SessionsController < ApplicationController
-  before_filter :load_omniauth_auth, :only => :create
 
-  def new; end
+  def new
+	@user = User.new
+  end
 
   def create
     @user =
-      User.find_by_provider_and_uid(@auth["provider"], @auth["uid"].to_s) ||
-      User.create_with_omniauth(@auth)
+      User.find_by_email(@auth["email"])
 
     unless @user.persisted?
-      store_sensitive_user_data_in_session
       render 'users/new', :status => 422
     else
       self.current_user = @user
@@ -17,8 +16,20 @@ class SessionsController < ApplicationController
     end
   end
 
+  def auth
+	user = User.authenticate(params[:user][:email], params[:user][:password])
+  	if user
+      		self.current_user = user
+    		redirect_to root_url, :notice => "Logged in!"
+  	else
+    		flash.now.alert = "Invalid email or password"
+    		redirect_to "/login"
+  	end
+  end
+
   def destroy
     self.current_user = nil
+    session[:user_id] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
 
@@ -26,18 +37,7 @@ class SessionsController < ApplicationController
     redirect_to root_url, :alert => params[:message]
   end
 
-  private
 
-  def load_omniauth_auth
-    @auth = request.env["omniauth.auth"]
-  end
 
-  def store_sensitive_user_data_in_session
-    session[:new_user] = {
-      :provider   => @user.provider,
-      :uid        => @user.uid,
-      :avatar_url => @user.avatar_url
-    }
-  end
 
 end

@@ -1,8 +1,8 @@
 class UserDecorator < ApplicationDecorator
   decorates :user
 
-  def nickname
-    "~#{user.nickname}"
+  def name
+	"#{user.name}"
   end
 
   def asciicasts_count
@@ -10,8 +10,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def link(options = {})
-    text = block_given? ? yield : nickname
-    h.link_to text, h.profile_path(user), :title => options[:title] || nickname
+    h.link_to user.name, @user 
   end
 
   def img_link(options = {})

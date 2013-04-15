@@ -11,20 +11,19 @@ AsciiIo::Application.routes.draw do
   end
 
 
-  get "/~:nickname" => "users#show", :as => :profile
+  #get "/~:id" => "users#show", :as => :profile
 
   get "/docs" => "docs#show", :page => 'record'
   get "/docs/:page" => "docs#show", :as => :docs
 
-  get "/auth/:provider/callback" => "sessions#create"
-  get "/auth/failure" => "sessions#failure"
 
   get "/login" => "sessions#new"
+  post "/login" => "sessions#auth"
   get "/logout" => "sessions#destroy"
 
   get "/connect/:user_token" => "user_tokens#create"
 
-  resource :user, :only => [:create, :edit, :update]
+  resources :users
 
   namespace :api do
     resources :comments, :only => :destroy

@@ -10,9 +10,6 @@ gem 'mysql2'
 #gem 'activerecord-mysql2-adapter'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-github'
 gem 'kaminari'
 gem 'airbrake'
 gem 'draper'
@@ -22,6 +19,8 @@ gem 'girl_friday'
 gem 'thin'
 gem 'open4'
 gem 'redcarpet'
+
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # Gems used only for assets and not required
 # in production environments by default.

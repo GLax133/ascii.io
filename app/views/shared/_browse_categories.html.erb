@@ -11,7 +11,7 @@
 
   <% if current_user -%>
     <li>
-      <%= link_to 'Mine', profile_path(current_user) %>
+      <%= link_to 'Mine', @current_user %>
     </li>
   <% end -%>
 </ul>
