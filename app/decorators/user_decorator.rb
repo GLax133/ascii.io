@@ -7,12 +7,11 @@ class UserDecorator < ApplicationDecorator
   end
 
   def link(options = {})
-    h.link_to user.name, @user 
+    h.link_to user.name 
   end
 
   def img_link(options = {})
-    link(options) do
-      h.avatar_image_tag(user)
-    end
+    h.avatar_image_tag(user)
+    
   end
 end
