@@ -1,0 +1,14 @@
+<script type='text/javascript' src='/jwplayer.js'></script>
+<div style="display: table-cell;vertical-align: middle"   id='mediaspace'>This text will be replaced</div>
+<script type='text/javascript'>
+  var roomid = $('#divroom').data('roomname');
+  roomid = "stream" + roomid;
+  jwplayer('mediaspace').setup({
+    'flashplayer':'/player.swf',
+    'file':roomid,
+    'streamer': 'rtmp://www.codepark.us/oflaDemo',
+    'controlbar': 'bottom',
+    'width': '500',
+    'height': '140'
+  });
+</script>

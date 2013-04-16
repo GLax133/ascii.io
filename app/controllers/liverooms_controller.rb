@@ -25,6 +25,12 @@ class LiveroomsController < ApplicationController
 	def show
 		
 		@liveroom = Liveroom.find(params[:id])
+		teacher = User.find_by_name(@liveroom.teacher)
+		if teacher && current_user && teacher.id ==  current_user.id
+			@is_teacher = 1
+		else
+			@is_teacher = 0
+		end
 	end
 
 	def edit
