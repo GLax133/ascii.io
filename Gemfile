@@ -16,9 +16,10 @@ gem 'draper'
 gem 'fog'
 gem 'simple_form'
 gem 'girl_friday'
-gem 'thin'
+#gem 'thin'
 gem 'open4'
 gem 'redcarpet'
+gem 'em-websocket'
 
 gem "bcrypt-ruby", :require => "bcrypt"
 
