@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessible :email, :passwd, :passwd_confirmation
-  attr_accessible :name
+  attr_accessible :name,:nickname
   
   attr_accessor :passwd
   before_save :encrypt_password
@@ -34,9 +34,6 @@ class User < ActiveRecord::Base
     user
   end
 
-  def to_param
-    nickname
-  end
 
   def add_user_token(token)
     user_tokens.find_or_create_by_token(token)

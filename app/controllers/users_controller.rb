@@ -1,7 +1,8 @@
+#coding:utf-8
+
 class UsersController < ApplicationController
   PER_PAGE = 15
 
-  before_filter :ensure_authenticated!, :only => [:edit, :update]
 
   def new
     @user = User.new
@@ -30,13 +31,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = current_user 
   end
 
   def update
     current_user.update_attributes(params[:user])
-    redirect_to profile_path(current_user),
-                :notice => 'Account settings saved.'
+    redirect_to '/',
+                :notice => '修改成功.'
   end
 
 

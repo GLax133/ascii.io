@@ -23,7 +23,8 @@ AsciiIo::Application.routes.draw do
 
   get "/connect/:user_token" => "user_tokens#create"
 
-  resources :users
+  resources :users ,:only =>[:new,:create]
+  resource :user, :only => [:edit, :update]
 
   namespace :api do
     resources :comments, :only => :destroy
