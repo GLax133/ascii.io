@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412053800) do
+ActiveRecord::Schema.define(:version => 20130416063557) do
 
   create_table "asciicasts", :force => true do |t|
     t.integer  "user_id"
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(:version => 20130412053800) do
   add_index "likes", ["asciicast_id"], :name => "index_likes_on_asciicast_id"
   add_index "likes", ["user_id", "asciicast_id"], :name => "index_likes_on_user_id_and_asciicast_id"
   add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
+
+  create_table "liverooms", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "status"
+    t.string   "teacher"
+    t.string   "admin"
+    t.string   "image"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "picture_file"

@@ -1,5 +1,6 @@
 AsciiIo::Application.routes.draw do
 
+
   get "/browse" => "asciicasts#index", :as => :browse
   get "/browse/popular" => "asciicasts#popular", :as => :popular
 
@@ -25,6 +26,8 @@ AsciiIo::Application.routes.draw do
 
   resources :users ,:only =>[:new,:create]
   resource :user, :only => [:edit, :update]
+
+  resources :liverooms
 
   namespace :api do
     resources :comments, :only => :destroy

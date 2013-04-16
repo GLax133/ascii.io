@@ -1,0 +1,47 @@
+<link href="/liveroom.css" media="screen" rel="stylesheet" type="text/css" />
+
+      <h1>直播课程</h1>
+<section class="supplimental">
+  <div class="wrapper">
+
+<ul class='records'>
+  <% @liverooms.each do |liveroom| %>
+
+<li class='record'>
+<div class='userinfo'>
+ <img alt="" src=<%= liveroom.image%> width="100" height="100" />
+ <%= liveroom.teacher%>
+</div>
+
+<h3 class='title'>
+   <a href=""><%= liveroom.name %></a>
+</h3>
+
+<div class='desc'>
+<time datetime=''>
+
+</time>
+</div>
+<div class='desc description'>
+<p><%= liveroom.description %></p>
+
+</div>
+
+<br>
+<div class='desc'>
+  <p class='tags'>授课状态:
+  <% if liveroom.status %>
+  正在直播
+  <% else%>
+  尚未开始
+ <% end %>
+</p>
+</div>
+
+</li>
+
+
+  <% end %>
+</ul>
+</div>
+</section>
