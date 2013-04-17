@@ -40,6 +40,11 @@
 
 </li>
 
+<% if @is_teacher == 1 %>
+	<%= render :partial => 'liverooms/publisher'  %>
+<% else %>
+	<%= render :partial => 'liverooms/player'  %>
+<% end %>
 </ul>
 <div class="vertical-expander-30" ></div>
 </div>
@@ -48,13 +53,8 @@
 <section class="supplimental">
   <div class="wrapper" id="divroom" data-roomname='<%= @liveroom.id %>' data-username="<%= @username%>">
   
-<%= render :partial => 'liverooms/vt'  %>
 
-<% if @is_teacher == 1 %>
-	<%= render :partial => 'liverooms/publisher'  %>
-<% else %>
-	<%= render :partial => 'liverooms/player'  %>
-<% end %>
+<%= render :partial => 'liverooms/vt'  %>
 
 
 <%= render :partial => 'liverooms/chat'  %>
