@@ -30,7 +30,7 @@
       message.focus();
       return event.preventDefault();
     });
-    #("#message").bind('keyup',function(event)){
+    #("#message").bind('keyup',function(event){
 	if (event.keyCode == '13'){
 	      var message, roomid;
       		message = $("#message");
@@ -47,7 +47,7 @@
       		return event.preventDefault();
 
 	}
-    };
+    });
     ws.onopen = function() {
       var roomid;
       roomid = $('#divroom').data('roomname');
