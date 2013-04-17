@@ -50,14 +50,12 @@
   
 <%= render :partial => 'liverooms/vt'  %>
 
-<ul class='records'>
 <% if @is_teacher == 1 %>
 	<%= render :partial => 'liverooms/publisher'  %>
 <% else %>
 	<%= render :partial => 'liverooms/player'  %>
 <% end %>
 
-</ul>
 
 <%= render :partial => 'liverooms/chat'  %>
 
