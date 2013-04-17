@@ -1,6 +1,9 @@
 class UserDecorator < ApplicationDecorator
   decorates :user
 
+  def name
+	user.name
+  end
 
   def asciicasts_count
     model.asciicasts.count

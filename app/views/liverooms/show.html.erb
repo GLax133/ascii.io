@@ -46,8 +46,10 @@
 </section>
 
 <section class="supplimental">
-  <div class="wrapper" id="divroom" data-roomname='<%= @liveroom.id %>' >
+  <div class="wrapper" id="divroom" data-roomname='<%= @liveroom.id %>' data-username="<%= @username%>">
   
+<%= render :partial => 'liverooms/vt'  %>
+
 <ul class='records'>
 <% if @is_teacher == 1 %>
 	<%= render :partial => 'liverooms/publisher'  %>

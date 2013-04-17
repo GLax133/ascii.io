@@ -25,11 +25,15 @@ class LiveroomsController < ApplicationController
 	def show
 		
 		@liveroom = Liveroom.find(params[:id])
-		teacher = User.find_by_name(@liveroom.teacher)
-		if teacher && current_user && teacher.id ==  current_user.id
+		if current_user && @liveroom.teacher == current_user.name
 			@is_teacher = 1
 		else
 			@is_teacher = 0
+		end
+		if current_user
+			@username = current_user.name
+		else
+			@username = "guest" + (1000+rand(8999)).to_s
 		end
 	end
 

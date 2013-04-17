@@ -1,0 +1,52 @@
+$ ->
+  liveterm=""
+  #name = prompt("What is your name?")
+  #$("#name").text(name)
+  name =   $('#divroom').data('username');
+  $("#message").focus()
+ 
+  #websocket stuff
+  url = "ws://127.0.0.1:8088"
+  ws = new WebSocket(url)   
+  ws.open
+  
+  $("#message_form").submit (event) ->
+    message = $("#message")
+    roomid =   $('#divroom').data('roomname');
+    roomid = "room" + roomid;
+
+    ws.send(JSON.stringify({id: name, action: "say", data : message.val(),room:roomid,}))
+    message.val('')
+    message.focus();
+    event.preventDefault()
+  
+  ws.onopen = ->
+    roomid =   $('#divroom').data('roomname');
+    roomid = "room" + roomid;
+    ws.send(JSON.stringify({id: name, action: "connect",room:roomid}))
+    
+  ws.onmessage = (message) ->
+    msgs = message.data.split(":")
+    alert(msgs[0])
+    if msgs[0] != 'teacher'
+      now_time = new Date()
+      now_hm  = now_time.getHours() + ':' + now_time.getMinutes()
+      line =  '<div class="chat chat-1111 rounded"><span class="gravatar"><img src="'+'" width="23" height="23" onload="this.style.visibility=\'visible\'" /></span><span class="author">' + msgs[0]+':</span><span class="text">'+msgs[1]+'</span><span class="time">'+now_hm+'</span></div>'
+      $(".chatLineHolder").append(line)
+      $("#chatLineHolder").scrollTop = $("#chatLineHolder").scrollHeight 
+    else	
+      liveterm.write(msg[1])
+    
+  ws.onclose = ->
+    roomid =   $('#divroom').data('roomname');
+    roomid = "room" + roomid;
+    ws.send(JSON.stringify({id: name, room:roomid}))
+    #onclose not firing for some reason
+
+  #save chat log
+  $("#save_chat_log").submit (event) ->
+    $.post this.action, {chat_data : $("#chat_window").html().replace(/<br>/g, "\n")}, (data) ->
+      log_link = $("#log_link")
+      log_link.attr('href', data)
+      log_link.show()
+    event.preventDefault()
