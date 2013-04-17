@@ -30,6 +30,24 @@
       message.focus();
       return event.preventDefault();
     });
+    #("#message").bind('keyup',function(event)){
+	if (event.keyCode == '13'){
+	      var message, roomid;
+      		message = $("#message");
+      		roomid = $('#divroom').data('roomname');
+      		roomid = "room" + roomid;
+      	ws.send(JSON.stringify({
+        	id: name,
+        	action: "say",
+        	data: message.val(),
+        	room: roomid
+         }));
+      		message.val('');
+      		message.focus();
+      		return event.preventDefault();
+
+	}
+    };
     ws.onopen = function() {
       var roomid;
       roomid = $('#divroom').data('roomname');
