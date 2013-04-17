@@ -26,7 +26,6 @@ EM.run {
         #client = JSON.parse(msg).symbolize_keys
         client = JSON.parse(msg)
 	client = symbolize_keys(client)
-        print client
 	room = client[:room]
         case client[:action]
         when 'connect'
