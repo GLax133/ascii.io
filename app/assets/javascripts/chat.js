@@ -2,15 +2,15 @@
 (function() {
 
   $(function() {
-    var liveterm;
+    var liveterm = $("#liveterm1");
     var name, url, ws;
     name = $('#divroom').data('username');
     $("#message").focus();
     
     
     liveterm = new Terminal(80, 24);
-    liveterm.open("liveterm1");
-    liveterm.write("hello") 
+    if (liveterm)
+    	liveterm.open("liveterm1");
 
     url = "ws://127.0.0.1:8088";
     ws = new WebSocket(url);
