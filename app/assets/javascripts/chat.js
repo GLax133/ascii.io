@@ -50,7 +50,8 @@
         $(".chatLineHolder").append(line);
         $("#chatLineHolder").scrollTop = $("#chatLineHolder").scrollHeight;
       } else {
-        liveterm.write(message.data.substring(9));
+	var s= message.data.substr(10);
+        liveterm.write(s);
       }
     };
     ws.onclose = function() {
