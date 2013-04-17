@@ -4,11 +4,8 @@
   var roomid = $('#divroom').data('roomname');
   roomid = "stream" + roomid;
   jwplayer('mediaspace').setup({
-    'flashplayer':'/player.swf',
-    'file':roomid,
-    'streamer': 'rtmp://www.codepark.us/oflaDemo',
-    'controlbar': 'bottom',
+    'file': 'rtmp://www.codepark.us/oflaDemo'+roomid,
     'width': '500',
-    'height': '140'
+    'height': '60'
   });
 </script>

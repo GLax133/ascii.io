@@ -338,7 +338,6 @@ class PtyRecorder(object):
         '''
 
         assert self.master_fd is not None
-
         while 1:
             try:
                 rfds, wfds, xfds = select.select([self.master_fd, pty.STDIN_FILENO], [], [])
@@ -503,7 +502,7 @@ def print_version():
 def main():
     '''Parses command-line options and creates asciicast.'''
     global ws,roomid
-    ws = create_connection("ws://127.0.0.1:8088/")
+    ws = create_connection("ws://www.codepark.us:8080/")
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'c:t:ihy', ['help', 'version'])
     except getopt.error as msg:
