@@ -17,6 +17,8 @@
     $("#message_form").submit(function(event) {
       var message, roomid;
       message = $("#message1");
+      if (message.val() == '')
+      		return event.preventDefault();
       roomid = $('#divroom').data('roomname');
       roomid = "room" + roomid;
       ws.send(JSON.stringify({
@@ -32,8 +34,9 @@
     $("#message1").bind('keyup',function(event){
 	if (event.keyCode == '13'){
 		var message, roomid;
-      		event.preventDefault();
       		message = $("#message1");
+                if (message.val() == '')
+      			return event.preventDefault();
       		roomid = $('#divroom').data('roomname');
       		roomid = "room" + roomid;
       		ws.send(JSON.stringify({
@@ -44,6 +47,7 @@
       		}));
       		message.val('');
       		message.focus();
+      		return event.preventDefault();
 	}
     });
     ws.onopen = function() {
