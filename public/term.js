@@ -2420,11 +2420,11 @@ Terminal.prototype.is = function(term) {
 };
 
 Terminal.prototype.handler = function(data) {
-  this.emit('data', data);
+  //this.emit('data', data);
 };
 
 Terminal.prototype.handleTitle = function(title) {
-  this.emit('title', title);
+  //this.emit('title', title);
 };
 
 /**
