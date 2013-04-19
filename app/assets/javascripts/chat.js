@@ -11,7 +11,7 @@
     liveterm = new Terminal(80, 24);
     liveterm.open("liveterm1");
 
-    url = "ws://127.0.0.1:8088";
+    url = "ws://127.0.0.1:8080";
     ws = new WebSocket(url);
     ws.open;
     $("#message_form").submit(function(event) {

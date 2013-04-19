@@ -1,4 +1,10 @@
     <script type="text/javascript" src="/swfobject.js"></script>
+    <div style="display: table-cell;vertical-align: middle"  id="liveaudio">
+        <p>Flash not installed</p>
+    </div>
+
+
+
     <script type="text/javascript">
 	var roomid = $('#divroom').data('roomname');
 	roomid = "stream" + roomid;
@@ -6,10 +12,7 @@
             streamer: 'rtmp://www.codepark.us/oflaDemo',
             file:roomid,
         };
-        swfobject.embedSWF("/RtmpPublisher.swf", "rtmp-publisher", "800", "100", "9.0.0", null, flashVars);
+        swfobject.embedSWF("/RtmpPublisher.swf", "liveaudio", "800", "140", "9.0.0", null, flashVars);
 
     </script>
-    <div style="display: table-cell;vertical-align: middle"  id="rtmp-publisher">
-        <p>Flash not installed</p>
-    </div>
 

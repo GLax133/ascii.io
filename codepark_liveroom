@@ -55,9 +55,49 @@ BASE_DIR = os.path.expanduser("~/.ascii.io")
 record_exit = 0
 common_path = ""
 start_time  = ""
+host='127.0.0.1'
 
+############ record voice####
 
+class record_wav(threading.Thread):
+      def __init__(self):
+             threading.Thread.__init__(self)
 
+      def run(self):
+       	    global record_exit
+	    card = 'default'
+	    f = wave.open(common_path+"/record.wav", 'wb')
+            f.setnchannels(1)
+            f.setsampwidth(2)
+            f.setframerate(8000)
+
+    # Open the device in nonblocking capture mode. The last argument could
+    # just as well have been zero for blocking mode. Then we could have
+    # left out the sleep call in the bottom of the loop
+            inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, card)
+
+    # Set attributes: Mono, 44100 Hz, 16 bit little endian samples
+            inp.setchannels(1)
+            inp.setrate(8000)
+            inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
+
+    # The period size controls the internal number of frames per period.
+    # The significance of this parameter is documented in the ALSA api.
+    # For our purposes, it is suficcient to know that reads from the device
+    # will return this many frames. Each frame being 2 bytes long.
+    # This means that the reads below will return either 320 bytes of data
+    # or 0 bytes of data. The latter is possible because we are in nonblocking
+    # mode.
+            inp.setperiodsize(160)
+
+    	    while record_exit != 1:
+        # Read data from device
+                   l, data = inp.read()
+
+                   if l:
+                        f.writeframes(data)
+                   #time.sleep(.001)
+	    f.close()
 
 #################
 
@@ -125,14 +165,16 @@ class AsciiCast(object):
         self.record_input = record_input
         self.duration = None
         self.always_yes = always_yes
+	r = record_wav()
+	r.start()
 	r1 = capture_screen()
 	r1.start()
 
     def create(self):
         self._record()
         if self.confirm_upload():
-            #return self._upload()
-	    return 
+            return self._upload()
+	    
         else:
             self._delete()
 
@@ -502,7 +544,7 @@ def print_version():
 def main():
     '''Parses command-line options and creates asciicast.'''
     global ws,roomid
-    ws = create_connection("ws://www.codepark.us:8080/")
+    ws = create_connection("ws://%s:8080/" % host)
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'c:t:ihy', ['help', 'version'])
     except getopt.error as msg:
@@ -540,7 +582,7 @@ def main():
     try:
         api_url = config.get('api', 'url')
     except ConfigParser.NoOptionError:
-        api_url = 'http://127.0.0.1:3000'
+        api_url = 'http://%s:3000'% host
 
     if not os.path.isdir(BASE_DIR):
         os.mkdir(BASE_DIR)

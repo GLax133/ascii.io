@@ -1,18 +1,21 @@
+
+
     <script type='text/javascript' src='/term.js'></script>
     <script src="/assets/chat.js?body=1" type="text/javascript"></script>
+
 
 <link href="/liveroom.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/chat.css" rel="stylesheet"  type="text/css" />
 
       <h1>直播课程</h1>
 <section class="supplimental">
-  <div class="wrapper">
 
+  <div id="divroom" data-roomname='<%= @liveroom.id %>' data-username="<%= @username%>">
 
 <ul class='records'>
 <li class='record'>
 <div class='userinfo'>
- <img alt="" src=<%= @liveroom.image%> width="100" height="100" />
+ <img alt="" src='<%= @liveroom.image%>' width="100" height="100" />
  <%= @liveroom.teacher%>
 </div>
 
@@ -54,8 +57,8 @@
 </section>
 
 <section class="supplimental">
-  <div id="divroom" data-roomname='<%= @liveroom.id %>' data-username="<%= @username%>">
 
+  <div class="wrapper">
 <div style="float:left;box-shadow: 2px 2px 5px #bbbbbb; border: 2px #cccccc solid;">  
 <%= render :partial => 'liverooms/vt'  %>
 </div>

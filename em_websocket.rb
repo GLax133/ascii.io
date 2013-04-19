@@ -14,7 +14,7 @@ EM.run {
     @sockets = Array.new
     @rooms = Hash.new
     
-    EM::WebSocket.start(:host=>'0.0.0.0',:port=>8088) do |ws|
+    EM::WebSocket.start(:host=>'0.0.0.0',:port=>8080) do |ws|
       ws.onopen do
         
       end
@@ -23,6 +23,7 @@ EM.run {
       end
     
       ws.onmessage do |msg|
+      begin
         #client = JSON.parse(msg).symbolize_keys
         client = JSON.parse(msg)
 	client = symbolize_keys(client)
@@ -40,6 +41,9 @@ EM.run {
 		s.send("#{client[:action]} : #{client[:data]}")
           end
         end
+      rescue  Exception =>e
+	puts e
+      end
       end
     end
   

@@ -1,9 +1,13 @@
 <script type='text/javascript' src='/jwplayer.js'></script>
-<div style="display: table-cell;vertical-align: middle"   id='mediaspace'>This text will be replaced</div>
+<div style="display: table-cell;vertical-align: middle"  id="liveaudio1">
+        <p>Flash not installed</p>
+</div>
+
+
 <script type='text/javascript'>
   var roomid = $('#divroom').data('roomname');
   roomid = "stream" + roomid;
-  jwplayer('mediaspace').setup({
+  jwplayer('liveaudio1').setup({
     'file': 'rtmp://www.codepark.us/oflaDemo/'+roomid,
     'width': '800',
     'height': '60',
