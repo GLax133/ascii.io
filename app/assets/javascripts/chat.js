@@ -16,7 +16,7 @@
     ws.open;
     $("#message_form").submit(function(event) {
       var message, roomid;
-      message = $("#message");
+      message = $("#message1");
       roomid = $('#divroom').data('roomname');
       roomid = "room" + roomid;
       ws.send(JSON.stringify({
@@ -29,22 +29,21 @@
       message.focus();
       return event.preventDefault();
     });
-    $("#message").bind('keyup',function(event){
+    $("#message1").bind('keyup',function(event){
 	if (event.keyCode == '13'){
-	      var message, roomid;
-      		message = $("#message");
+		var message, roomid;
+      		event.preventDefault();
+      		message = $("#message1");
       		roomid = $('#divroom').data('roomname');
       		roomid = "room" + roomid;
-      	ws.send(JSON.stringify({
-        	id: name,
-        	action: "say",
-        	data: message.val(),
-        	room: roomid
-         }));
+      		ws.send(JSON.stringify({
+        		id: name,
+        		action: "say",
+        		data: message.val(),
+        		room: roomid
+      		}));
       		message.val('');
       		message.focus();
-      		return event.preventDefault();
-
 	}
     });
     ws.onopen = function() {

@@ -126,7 +126,7 @@
 #chatContainer input{
 	background:url('/img/input_bg.jpg') repeat-x #dcdcdc;
 	height:26px;
-	font:13px/26px Calibri,Arial,sans-serif;
+	/*font:13px/26px Calibri,Arial,sans-serif;*/
 	color:#777;
 	border:1px solid;
 	border-color:#c1c1c1 #eee #eee #c1c1c1;
@@ -195,18 +195,6 @@ a.logoutButton:hover{
 	background-position:left bottom;
 }
 
-p.noChats,
-#chatUsers .count{
-	clear:both;
-	font-size:12px;
-	padding:10px;
-	text-align:center;
-	text-shadow:1px 1px 0 #111111;
-}
-
-#chatUsers .count{
-	font-size:11px;
-}
 
 .rounded{
 	-moz-border-radius:4px;

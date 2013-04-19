@@ -55,7 +55,7 @@ var window = this
 /**
  * EventEmitter
  */
-
+/*
 function EventEmitter() {
   this._events = this._events || {};
 }
@@ -113,7 +113,7 @@ EventEmitter.prototype.emit = function(type) {
 EventEmitter.prototype.listeners = function(type) {
   return this._events[type] = this._events[type] || [];
 };
-
+*/
 /**
  * States
  */
@@ -131,7 +131,7 @@ var normal = 0
  */
 
 function Terminal(cols, rows, handler) {
-  EventEmitter.call(this);
+  //EventEmitter.call(this);
 
   var options;
   if (typeof cols === 'object') {
@@ -218,7 +218,7 @@ function Terminal(cols, rows, handler) {
   this.setupStops();
 }
 
-inherits(Terminal, EventEmitter);
+//inherits(Terminal, EventEmitter);
 
 /**
  * Colors
@@ -328,13 +328,13 @@ Terminal.bindKeys = function() {
 
   // We could put an "if (Terminal.focus)" check
   // here, but it shouldn't be necessary.
-  on(document, 'keydown', function(ev) {
+/*  on(document, 'keydown', function(ev) {
     return Terminal.focus.keyDown(ev);
   }, true);
 
   on(document, 'keypress', function(ev) {
     return Terminal.focus.keyPress(ev);
-  }, true);
+  }, true); */
 };
 
 /**
@@ -1957,6 +1957,7 @@ Terminal.prototype.writeln = function(data) {
   this.write(data + '\r\n');
 };
 
+/*
 Terminal.prototype.keyDown = function(ev) {
   var key;
 
@@ -2164,6 +2165,7 @@ Terminal.prototype.keyDown = function(ev) {
 
   return true;
 };
+*/
 
 Terminal.prototype.setgLevel = function(g) {
   this.glevel = g;
@@ -2177,6 +2179,7 @@ Terminal.prototype.setgCharset = function(g, charset) {
   }
 };
 
+/*
 Terminal.prototype.keyPress = function(ev) {
   var key;
 
@@ -2204,7 +2207,7 @@ Terminal.prototype.keyPress = function(ev) {
 
   return false;
 };
-
+*/
 Terminal.prototype.send = function(data) {
   var self = this;
 
@@ -4187,7 +4190,7 @@ var setInterval = this.setInterval;
  * Expose
  */
 
-Terminal.EventEmitter = EventEmitter;
+//Terminal.EventEmitter = EventEmitter;
 Terminal.isMac = isMac;
 Terminal.inherits = inherits;
 Terminal.on = on;
