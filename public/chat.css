@@ -1,7 +1,7 @@
 /* Main chat container */
 
 #chatContainer{
-	width:340px;
+	width:780px;
 	position:relative;
 	color:#777;
 	background:url('/img/solid_gray.jpg') repeat-x #d0d0d0;
@@ -39,10 +39,10 @@
 
 
 #chatLineHolder{
-	height:418px;
-	width:342px;
+	height:140px;
+	width:780px;
 	margin-bottom:20px;
-	overflow-y:scroll;
+	overflow-y:auto;
 }
 
 

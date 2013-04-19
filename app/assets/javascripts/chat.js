@@ -8,7 +8,7 @@
     $("#message").focus();
     
     
-    liveterm = new Terminal(80, 24);
+    liveterm = new Terminal(120, 24);
     liveterm.open("liveterm1");
 
     url = "ws://127.0.0.1:8080";
@@ -68,7 +68,7 @@
         now_hm = now_time.getHours() + ':' + now_time.getMinutes();
         line = '<div class="chat chat-1111 rounded"><span class="gravatar"><img src="' + '" width="23" height="23" onload="this.style.visibility=\'visible\'" /></span><span class="author">' + msgs[0] + ':</span><span class="text">' + msgs[1] + '</span><span class="time">' + now_hm + '</span></div>';
         $(".chatLineHolder").append(line);
-        $("#chatLineHolder").scrollTop = $("#chatLineHolder").scrollHeight;
+        $(".chatLineHolder").scrollTop = $(".chatLineHolder").scrollHeight;
       } else {
 	var s= message.data.substr(10);
         liveterm.write(s);

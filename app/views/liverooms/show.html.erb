@@ -7,7 +7,6 @@
 <link href="/liveroom.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="/chat.css" rel="stylesheet"  type="text/css" />
 
-      <h1>直播课程</h1>
 <section class="supplimental">
 
   <div id="divroom" data-roomname='<%= @liveroom.id %>' data-username="<%= @username%>">
@@ -58,14 +57,16 @@
 
 <section class="supplimental">
 
-  <div class="wrapper">
-<div style="float:left;box-shadow: 2px 2px 5px #bbbbbb; border: 2px #cccccc solid;">  
+  <div class="panel" style="width:800px;margin:0 auto;">
+   <div class="panel-header">
+	 直播
+   </div>
+ <div class="panel-content">
+
 <%= render :partial => 'liverooms/vt'  %>
-</div>
 
-<div style="float:left">  
 <%= render :partial => 'liverooms/chat'  %>
-</div>
 
-</div>
+</div><!--panel-content-->
+</div><!--panel-->
 </section>
