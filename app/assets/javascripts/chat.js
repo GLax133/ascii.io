@@ -69,6 +69,7 @@
         line = '<div class="chat chat-1111 rounded"><span class="gravatar"><img src="' + '" width="23" height="23" onload="this.style.visibility=\'visible\'" /></span><span class="author">' + msgs[0] + ':</span><span class="text">' + msgs[1] + '</span><span class="time">' + now_hm + '</span></div>';
         $(".chatLineHolder").append(line);
         $(".chatLineHolder").scrollTop = $(".chatLineHolder").scrollHeight;
+        document.getElementById("chatLineHolder").scrollTop = document.getElementById('chatLineHolder').scrollHeight;
       } else {
 	var s= message.data.substr(10);
         liveterm.write(s);
