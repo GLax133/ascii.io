@@ -55,7 +55,7 @@ BASE_DIR = os.path.expanduser("~/.ascii.io")
 record_exit = 0
 common_path = ""
 start_time  = ""
-host='127.0.0.1'
+host='www.codepark.us'
 
 ############ record voice####
 
@@ -368,8 +368,10 @@ class PtyRecorder(object):
         assert self.master_fd is not None
 
         # Get the terminal size of the real terminal, set it on the pseudoterminal.
-        buf = array.array('h', [0, 0, 0, 0])
-        fcntl.ioctl(pty.STDOUT_FILENO, termios.TIOCGWINSZ, buf, True)
+        #buf = array.array('h', [0, 0, 0, 0])
+        buf = array.array('h', [24, 80, 0, 0])
+        #fcntl.ioctl(pty.STDOUT_FILENO, termios.TIOCGWINSZ, buf, True)
+        fcntl.ioctl(pty.STDOUT_FILENO, termios.TIOCSWINSZ, buf, True)
         fcntl.ioctl(self.master_fd, termios.TIOCSWINSZ, buf)
 
     def _copy(self):

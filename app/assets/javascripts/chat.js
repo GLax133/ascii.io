@@ -8,7 +8,7 @@
     $("#message").focus();
     
     
-    liveterm = new Terminal(120, 24);
+    liveterm = new Terminal(80, 24);
     liveterm.open("liveterm1");
 
     url = "ws://127.0.0.1:8080";
