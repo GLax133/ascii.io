@@ -61,18 +61,25 @@
       }));
     };
     ws.onmessage = function(message) {
-      var line, msgs, now_hm, now_time;
-      msgs = message.data.split(":");
-      if (message.data.substring(0,7) != 'teacher') {
+      var line, now_hm, now_time,name,content;
+      var msgs = JSON.parse(message.data);
+      console.log(msgs);
+      console.log(msgs.action);
+      console.log(msgs.data);
+      if (msgs.action == 'teacher')
+      {
+	liveterm.write(msgs.data);
+      }
+      if (msgs.action == 'say')
+      {
+	 name = msgs.id;	
+	 content = msgs.data;	
+     
         now_time = new Date();
         now_hm = now_time.getHours() + ':' + now_time.getMinutes();
-        line = '<div class="chat chat-1111 rounded"><span class="gravatar"><img src="' + '" width="23" height="23" onload="this.style.visibility=\'visible\'" /></span><span class="author">' + msgs[0] + ':</span><span class="text">' + msgs[1] + '</span><span class="time">' + now_hm + '</span></div>';
+        line = '<div class="chat chat-1111 rounded"><span class="gravatar"><img src="' + '" width="23" height="23" onload="this.style.visibility=\'visible\'" /></span><span class="author">' + name + ':</span><span class="text">' + content + '</span><span class="time">' + now_hm + '</span></div>';
         $(".chatLineHolder").append(line);
-        $(".chatLineHolder").scrollTop = $(".chatLineHolder").scrollHeight;
         document.getElementById("chatLineHolder").scrollTop = document.getElementById('chatLineHolder').scrollHeight;
-      } else {
-	var s= message.data.substr(10);
-        liveterm.write(s);
       }
     };
     ws.onclose = function() {

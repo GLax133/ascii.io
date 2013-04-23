@@ -34,11 +34,11 @@ EM.run {
 	  @rooms[room] << ws
         when 'say'
           @rooms[room].each do |s|
-		s.send("#{client[:id]} : #{client[:data]}")
+		s.send(msg)
           end
         when 'teacher'
           @rooms[room].each do |s|
-		s.send("#{client[:action]} : #{client[:data]}")
+		s.send(msg)
           end
         end
       rescue  Exception =>e

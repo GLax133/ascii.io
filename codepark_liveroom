@@ -55,7 +55,7 @@ BASE_DIR = os.path.expanduser("~/.ascii.io")
 record_exit = 0
 common_path = ""
 start_time  = ""
-host='www.codepark.us'
+host='127.0.0.1'
 
 ############ record voice####
 
