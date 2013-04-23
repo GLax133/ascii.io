@@ -1,5 +1,9 @@
 AsciiIo::Application.routes.draw do
 
+  root :to => 'home#show'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
   get "/browse" => "asciicasts#index", :as => :browse
   get "/browse/popular" => "asciicasts#popular", :as => :popular
@@ -37,7 +41,6 @@ AsciiIo::Application.routes.draw do
     end
   end
 
-  root :to => 'home#show'
 
   mount JasmineRails::Engine => "/specs" unless Rails.env.production?
 
