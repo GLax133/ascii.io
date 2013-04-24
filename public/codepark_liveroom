@@ -22,6 +22,7 @@ import ConfigParser
 import uuid
 import shutil
 import StringIO
+import json
 
 import threading
 import alsaaudio
@@ -36,9 +37,13 @@ import gtk
 from Tkinter import *
 import tkMessageBox
 
+from websocket import create_connection
+
+ws = ''
+roomid = 0
 window = Tk()
 window.wm_withdraw()
-host="www.codepark.us"
+
 
 key_ctrl_f4 = [0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0]
 #################################
@@ -50,6 +55,8 @@ BASE_DIR = os.path.expanduser("~/.ascii.io")
 record_exit = 0
 common_path = ""
 start_time  = ""
+host='www.codepark.us'
+
 ############ record voice####
 
 class record_wav(threading.Thread):
@@ -91,10 +98,6 @@ class record_wav(threading.Thread):
                         f.writeframes(data)
                    #time.sleep(.001)
 	    f.close()
-
-
-
-
 
 #################
 
@@ -171,6 +174,7 @@ class AsciiCast(object):
         self._record()
         if self.confirm_upload():
             return self._upload()
+	    
         else:
             self._delete()
 
@@ -378,7 +382,6 @@ class PtyRecorder(object):
         '''
 
         assert self.master_fd is not None
-
         while 1:
             try:
                 rfds, wfds, xfds = select.select([self.master_fd, pty.STDIN_FILENO], [], [])
@@ -400,7 +403,8 @@ class PtyRecorder(object):
 
     def _handle_master_read(self, data):
         '''Handles new data on child process stdout.'''
-
+	wsdata={"data":data,"action":"teacher","room":roomid}
+	ws.send(json.dumps(wsdata))
         self._write_stdout(data)
         self.stdout_file.write(data)
 
@@ -413,7 +417,6 @@ class PtyRecorder(object):
 
     def _write_stdout(self, data):
         '''Writes to stdout as if the child process had written the data.'''
-
         os.write(pty.STDOUT_FILENO, data)
 
     def _write_master(self, data):
@@ -542,7 +545,8 @@ def print_version():
 
 def main():
     '''Parses command-line options and creates asciicast.'''
-
+    global ws,roomid
+    ws = create_connection("ws://%s:8080/" % host)
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'c:t:ihy', ['help', 'version'])
     except getopt.error as msg:
@@ -551,14 +555,9 @@ def main():
         sys.exit(2)
 
     action = 'rec'
-
-    if len(args) > 1:
-        print('Too many arguments')
-        print('Run "%s --help" for list of available options' % sys.argv[0])
-        sys.exit(2)
-    elif len(args) == 1:
-        action = args[0]
-
+    if sys.argv[1]: 
+    	roomid = "room" + sys.argv[1]
+   
     config = ConfigParser.RawConfigParser()
     config.add_section('user')
     config.add_section('api')
@@ -585,7 +584,7 @@ def main():
     try:
         api_url = config.get('api', 'url')
     except ConfigParser.NoOptionError:
-        api_url = 'http://www.codepark.us:3000'
+        api_url = 'http://%s:3000'% host
 
     if not os.path.isdir(BASE_DIR):
         os.mkdir(BASE_DIR)
@@ -614,7 +613,11 @@ def main():
         elif opt == '-i':
             record_input = True
         elif opt == '-y':
-            always_yes = True
+	        always_yes = True
+
+    if roomid == 0:
+	print "Please --roomid select room number"
+	sys.exit(0)
 
     if action == 'rec':
         check_pending()

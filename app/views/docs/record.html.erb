@@ -11,7 +11,30 @@
 To install/update ascii.io recorder, open a terminal and run following
 command:
 
+我们制作了2个工具;1个录播,1个直播。2个工具可以独立使用。
+
+安装录播工具：
+
     $ curl -sL www.codepark.us/asciiio | bash
+
+asciiio 是一个python程序,需要python alsa(录音),gtk(截屏)等库。
+
+    $ sudo aptitude install python-alsaaudio
+    $ sudo aptitude install python-gtk2
+    $ sudo easy_install wave
+
+也可以使用 easy_install 安装
+
+安装直播工具：
+
+     直播工具是基于录播工具修改而来，需要增加python的websocket库。
+
+     $ curl -sL www.codepark.us/codepark_liveroom |bash
+
+websocket库的安装。
+
+     $ sudo easy_install websocket   
+
 
 ### OSX (暂时不提供录音和截屏功能)
 
@@ -21,11 +44,21 @@ If you don't use Homebrew then install/update with:
 
     $ curl -sL www.codepark.us/asciiio | bash
 
-## 2. Record
+## 2. 录播使用方法
 
 Open our terminal and run following command:
 
     $ asciiio
+
+
+## 3. 直播使用方法
+
+    $ codepark_liveroom n
+
+n 为房间号码。
+
+codepark_liveroom 直播结束后也可以上传到网站。
+
 
 New shell instance will be opened and everything you'll do in it will be
 recorded. When you're ready to upload simply exit the shell with `exit`
