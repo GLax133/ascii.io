@@ -34,15 +34,11 @@ from Xlib.display import Display
 import os
 import time
 import gtk
-from Tkinter import *
-import tkMessageBox
 
 from websocket import create_connection
 
 ws = ''
 roomid = 0
-window = Tk()
-window.wm_withdraw()
 
 
 key_ctrl_f4 = [0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0]
