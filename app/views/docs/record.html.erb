@@ -15,7 +15,8 @@ command:
 
 安装录播工具：
 
-    $ curl -sL www.codepark.us/asciiio | bash
+    $ curl  http://www.codepark.us/asciiio >asciiio 
+    $ chmod +x asciiio
 
 asciiio 是一个python程序,需要python alsa(录音),gtk(截屏)等库。
 
@@ -31,7 +32,8 @@ asciiio 是一个python程序,需要python alsa(录音),gtk(截屏)等库。
 
      直播工具是基于录播工具修改而来，需要增加python的websocket库。
 
-     $ curl -sL www.codepark.us/codepark_liveroom |bash
+     $ curl http://www.codepark.us/codepark_liveroom >codepark_liveroom
+     $ chmod  + x codepark_liveroom
 
 websocket库的安装。
 
@@ -50,12 +52,12 @@ If you don't use Homebrew then install/update with:
 
 Open our terminal and run following command:
 
-    $ asciiio
+    $ ./asciiio
 
 
 ## 3. 直播使用方法
 
-    $ codepark_liveroom n
+    $ ./codepark_liveroom n
 
 n 为房间号码。
 
